@@ -36,7 +36,6 @@ libros = [
 ]
 
 usuarios = []       # lista de usuarios
-prestamos = []      # lista de préstamos (usuario, libro)
 
 opcion = -1
 while opcion != 0:
@@ -53,4 +52,5 @@ while opcion != 0:
         print("Saliendo del sistema...")
     else:
         print("Opción inválida, intente nuevamente.")
+
 
