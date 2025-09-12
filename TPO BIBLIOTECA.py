@@ -1,6 +1,16 @@
 #SISTEMA GESTION DE BIBLIOTECAS GRUPO 4 VIERNES TARDE
 
+import os
+
 # ---- Funciones ----
+
+def limpiar_consola():
+    """Limpia la consola; si no funciona, imprime líneas en blanco."""
+    
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+    print("\n" * 50)
+
 def mostrar_menu():
     print("\n--- Biblioteca ---")
     print("1. Mostrar libros")
@@ -51,16 +61,17 @@ def buscar_libro_por_titulo(libros):
     """Busca y muestra libros cuyo título contenga un texto."""
     pass
 
+# ---- Gestión de préstamos ----
+def listar_prestamos(prestamos):
+    """Muestra todos los préstamos activos."""
+    pass
+
 def prestar_libro(libros, usuarios, prestamos):
     """Registra un préstamo si hay stock y el usuario existe."""
     pass
 
 def devolver_libro(libros, prestamos):
     """Devuelve un libro prestado y actualiza el stock."""
-    pass
-
-def contar_libros_disponibles(libros):
-    """Cuenta el total de ejemplares disponibles en la biblioteca."""
     pass
 
 
@@ -74,19 +85,9 @@ def editar_usuario(usuarios):
     pass
 
 
-# ---- Gestión de préstamos ----
-def listar_prestamos(prestamos):
-    """Muestra todos los préstamos activos."""
-    pass
-
-
 # ---- Reportes y menús auxiliares ----
 def mostrar_menu_prestamos():
     """Muestra las opciones relacionadas con préstamos."""
-    pass
-
-def mostrar_resumen(libros, usuarios, prestamos):
-    """Muestra un resumen general: cantidad de libros, usuarios y préstamos."""
     pass
 
 
@@ -105,6 +106,7 @@ opcion = -1
 while opcion != 0:
     mostrar_menu()
     opcion = int(input("Seleccione una opción: "))
+    limpiar_consola()
 
     if opcion == 1:
         mostrar_libros(libros)
@@ -116,4 +118,3 @@ while opcion != 0:
         print("Saliendo del sistema...")
     else:
         print("Opción inválida, intente nuevamente.")
-
