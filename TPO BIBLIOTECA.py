@@ -9,18 +9,38 @@ def mostrar_menu():
     print("0. Salir")
 
 def mostrar_libros(matriz_libros):
-    print("\n--- Lista de Libros ---")
-    print("ID | Título                | Autor              | Disponible")
+    print("\n               --- Lista de Libros --- \n ")
+    print("ID | Título              | Autor              | Disponible")
     for fila in matriz_libros:
         print(f"{fila[0]:<3}| {fila[1]:<20}| {fila[2]:<18}| {fila[3]}")
 
 def registrar_usuario(usuarios):
+
+    print("\n--- Registro de Usuario ---\n")
+
     nombre = input("Ingrese nombre del usuario: ")
+
+    #verificaciones
+
+    while nombre in usuarios:
+        print("El usuario ya existe. Intente con otro nombre.")
+        nombre = input("Ingrese nombre del usuario: ")
+    while not nombre.strip():
+        print("El nombre no puede estar vacío. Intente nuevamente.")
+        nombre = input("Ingrese nombre del usuario: ")
+    while len(nombre) < 3 or len(nombre) > 25:
+        print("El nombre debe tener al menos 3 caracteres y menos de 25 caracteres. Intente nuevamente.")
+        nombre = input("Ingrese nombre del usuario: ")
+    while not nombre.replace(" ", "").isalpha():
+        print("El nombre solo debe contener letras y espacios. Intente nuevamente.")
+        nombre = input("Ingrese nombre del usuario: ")
+
+
     usuarios.append(nombre)
     print("Usuario registrado con éxito.")
 
 def mostrar_usuarios(usuarios):
-    print("\n--- Lista de Usuarios ---")
+    print("\n--- Lista de Usuarios ---\n")
     if len(usuarios) == 0:
         print("No hay usuarios registrados.")
     else:
@@ -30,12 +50,14 @@ def mostrar_usuarios(usuarios):
 
 #Programa Principal
 libros = [
-    [1, "El Quijote", "Cervantes", "Sí"], #ID, Titulo, Autor, Disponibilidad
+    #ID, Titulo, Autor, Disponibilidad
+    [1, "El Quijote", "Cervantes", "Sí"], 
     [2, "Cien Años de Soledad", "G. García Márquez", "Sí"],
     [3, "La Odisea", "Homero", "Sí"]
 ]
 
 usuarios = []       # lista de usuarios
+prestamos = []      # lista de préstamos (usuario, libro)
 
 opcion = -1
 while opcion != 0:
@@ -52,5 +74,4 @@ while opcion != 0:
         print("Saliendo del sistema...")
     else:
         print("Opción inválida, intente nuevamente.")
-
 
