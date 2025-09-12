@@ -1,4 +1,4 @@
-#SISTEMA GESTION DE BIBLIOTECAS
+#SISTEMA GESTION DE BIBLIOTECAS GRUPO 4 VIERNES TARDE
 
 # ---- Funciones ----
 def mostrar_menu():
@@ -30,7 +30,7 @@ def mostrar_usuarios(usuarios):
 
 #Programa Principal
 libros = [
-    [1, "El Quijote", "Cervantes", "Sí"],
+    [1, "El Quijote", "Cervantes", "Sí"], #ID, Titulo, Autor, Disponibilidad
     [2, "Cien Años de Soledad", "G. García Márquez", "Sí"],
     [3, "La Odisea", "Homero", "Sí"]
 ]
@@ -53,3 +53,4 @@ while opcion != 0:
         print("Saliendo del sistema...")
     else:
         print("Opción inválida, intente nuevamente.")
+
