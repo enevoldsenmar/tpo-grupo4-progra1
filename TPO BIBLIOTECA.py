@@ -9,12 +9,13 @@ def limpiar_consola():
     
     os.system('cls' if os.name == 'nt' else 'clear')
 
-    print("\n" * 50)
+    #print("\n" * 50)
 
 def mostrar_menu():
     print("\n--- Biblioteca ---")
     print("1. Mostrar libros")
-    print("2. Registrar usuario")
+    print("2. Buscar libro")
+    print("3. Registrar usuario")
     print("3. Mostrar usuarios")
     print("0. Salir")
 
@@ -22,8 +23,8 @@ def mostrar_libros(matriz_libros):
     print("\n               --- Lista de Libros --- \n ")
     print("ID | Título              | Autor             | Disponible    | Cantidad")
     for fila in matriz_libros:
-        print(f"{fila[0]:<3}| {fila[1]:<20}| {fila[2]:<18}| {fila[3]}            |{fila[4]}")
-
+        print(f"{fila[0]:<3}| {fila[1]:<20}| {fila[2]:<18}| {fila[3]:<3}| {fila[4]:<5}")
+                #fila 0: ID   fila 1: titulo  fila 2: autor  fila 3: disponibilidad fila 4: cant
 def registrar_usuario(usuarios):
 
     print("\n--- Registro de Usuario ---\n")
@@ -57,9 +58,21 @@ def mostrar_usuarios(usuarios):
             print(f"{i+1}. {usuario}")
 
 # ---- Gestión de libros ----
-def buscar_libro_por_titulo(libros):
+def buscar_libro_por_titulo(matriz_libros):
     """Busca y muestra libros cuyo título contenga un texto."""
-    pass
+    titulo = input("Ingrese el título del libro a buscar: ").lower()  # ingreso por teclado en minúsculas
+    encontrado = False
+    
+    for fila in matriz_libros:
+        if fila[1].lower() == titulo:  # comparacion sin importar mayúsculas
+            pos = matriz_libros.index(fila)  # posicion usando index por si luego se quiere buscar por id
+            print(f"\nLibro encontrado!")
+            print('-'*100)
+            print(f"ID: {fila[0]:<3}| Titulo: {fila[1]:<20}| Autor: {fila[2]:<18}| Disponibilidad: {fila[3]:<3}| Cantidad: {fila[4]:<5}")
+            print('-'*100)
+            encontrado = True
+    if encontrado == False:
+        print("\nNo se encontró el libro.")
 
 # ---- Gestión de préstamos ----
 def listar_prestamos(prestamos):
@@ -111,8 +124,10 @@ while opcion != 0:
     if opcion == 1:
         mostrar_libros(libros)
     elif opcion == 2:
-        registrar_usuario(usuarios)
+        buscar_libro_por_titulo(libros)
     elif opcion == 3:
+        registrar_usuario(usuarios)
+    elif opcion == 4:
         mostrar_usuarios(usuarios)
     elif opcion == 0:
         print("Saliendo del sistema...")
